@@ -19,7 +19,6 @@ export function createFightersSelector() {
 }
 
 const fighterDetailsMap = new Map();
-console.log(fighterDetailsMap);
 
 export async function getFighterInfo(fighterId) {
   // get fighter info from fighterDetailsMap or from service and write it to fighterDetailsMap

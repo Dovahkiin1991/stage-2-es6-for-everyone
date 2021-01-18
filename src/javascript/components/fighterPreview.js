@@ -15,7 +15,6 @@ export function createFighterPreview(fighter, position) {
     });
 
     for (let i in fighter ) {
-      console.log(i);
 
       const singleItem = createElement({
         tagName: 'li',
