@@ -2,6 +2,7 @@ import { createElement } from '../helpers/domHelper';
 import { renderArena } from './arena';
 import versusImg from '../../../resources/versus.png';
 import { createFighterPreview } from './fighterPreview';
+import { fighterService } from '../services/fightersService';
 
 export function createFightersSelector() {
   let selectedFighters = [];
@@ -18,9 +19,20 @@ export function createFightersSelector() {
 }
 
 const fighterDetailsMap = new Map();
+console.log(fighterDetailsMap);
 
 export async function getFighterInfo(fighterId) {
   // get fighter info from fighterDetailsMap or from service and write it to fighterDetailsMap
+  try {
+    if (!fighterDetailsMap.has(fighterId)) {
+      const fighterInfo = await fighterService.getFighterInfo(fighterId);
+      fighterDetailsMap.set(fighterId, fighterInfo);
+    }
+
+    return fighterDetailsMap.get(fighterId);
+  } catch (error) {
+    throw error;
+  }
 }
 
 function renderSelectedFighters(selectedFighters) {
